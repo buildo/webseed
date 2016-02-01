@@ -48,11 +48,13 @@
     "debug": "^2.2.0",
     "fixed-data-table": "^0.4.7",
     "intl": "^1.0.1",
+    "lodash": "^4.0.1",
     "normalize.css": "^3.0.3",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-intl-hoc": "^0.1.5",
     "react-router": "^2.0.0-rc5",
-    "revenge": "^0.3.6"
+    "revenge": "^0.3.6",
+    "rxjs-es": "^5.0.0-beta.1"
   }
 }

@@ -4,7 +4,7 @@ export default (API) => {
 
   const user = Query({
     id: 'user',
-    fetch: () => () => {
+    fetch: () => {
       return API.getUser();
     }
   });

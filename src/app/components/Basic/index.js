@@ -4,5 +4,5 @@ export {
 } from './intlHelpers/';
 
 export {
-  FlexView
+  FlexView, LoadingSpinner, Button
 } from 'buildo-react-components/src';

@@ -3,7 +3,7 @@ export {
   childContextTypes, getChildContext, contextTypes
 } from 'react-intl-hoc';
 
-import get from 'lodash/object/get';
+import get from 'lodash/get';
 import {
   keyMapFM,
   intlMethods as originalIntlMethods,

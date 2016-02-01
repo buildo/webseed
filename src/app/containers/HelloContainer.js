@@ -1,6 +1,10 @@
 import React from 'react';
-import { queries, props, t, skinnable } from 'revenge';
+import { props, t, skinnable } from 'revenge';
+import connect from 'state/connect';
 import Hello from 'Hello/Hello';
+import UserDetails from 'UserDetails/UserDetails';
+import { FlexView } from 'Basic';
+import pick from 'lodash/pick';
 
 const intlProps = {
   messages: t.Any,
@@ -8,30 +12,33 @@ const intlProps = {
   formats: t.Any
 };
 
-@queries(['user'])
+/**
+ *  Example of component accessing the router params
+ *  Router params are just part of the state, hence
+ *  accessed via the @connect decorator.
+ *
+ */
+@connect(s => pick(s, 'username'))
 @skinnable()
 @props({
-  app: t.Obj,
-  params: t.Obj,
-  user: t.maybe(t.Obj),
-  readyState: t.Obj,
+  username: t.maybe(t.String),
+  transition: t.Function,
   ...intlProps
 })
 export default class HelloContainer extends React.Component {
 
   getLocals() {
-    const username = this.props.user ? this.props.user.name.first : null;
+    const { username } = this.props;
 
-    return {
-      username
-    };
+    return { username };
   }
 
   template({ username }) {
     return (
-      <div>
+      <FlexView hAlignContent='center'>
         {username && <Hello username={username} />}
-      </div>
+        <UserDetails />
+      </FlexView>
     );
   }
 

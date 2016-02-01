@@ -1,7 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import config from '../../config';
 import { CookieSerializer, t } from 'revenge';
+import run from 'state/run';
+import mkAvenger from 'avenger';
+import debug from 'debug';
+import { browserHistory, hashHistory } from 'react-router';
+import API from 'HTTPAPI';
+import loadLocale from './loadLocale';
+import routes from 'routes';
+import getQueries from 'queries';
+import mkContextWrapper from 'state/mkContextWrapper';
+import { QueriesContextTypes } from 'state/queries';
+
+import 'assets';
 
 if (process.env.NODE_ENV === 'development') {
   // Monkey-patch fixed data table so that expensive prop type checks are avoided in dev mode
@@ -33,61 +44,47 @@ if (process.env.NODE_ENV === 'development') {
   debug.disable();
 }
 
-import 'assets';
-
-import { createRoutes, browserHistory, hashHistory, Router, RouterContext } from 'react-router';
-import API from 'HTTPAPI';
-import DB from 'DB';
-import App from 'App';
-import loadLocale from './loadLocale';
-import debug from 'debug';
-import routes from 'routes';
-
 const log = debug('app:client');
 
-function renderApp(mountNode: HTMLElement, initialData: ?Object, data = {}) {
+function renderApp(mountNode: HTMLElement) {
 
   return function renderAppWithLocale(intlData) {
 
-    if (!initialData) {
-      const token = CookieSerializer.deserialize();
-      initialData = DB.getDefaultData(token);
-    }
-
-    const db = new DB(initialData);
-    const app = main.app = new App({
-      API, db, data,
-      remote: config.remote ? '/__remote' : false
+    const universe = getQueries(API);
+    const av = mkAvenger(universe);
+    av.$graph.subscribe(v => {
+      console.log('---', v);
     });
 
-    // don't fetch data during the first rendering
-    // if currently running on iso setup
-    let doFetch = !config.iso;
+    const Provider = mkContextWrapper({
+      avenger: av
+    }, QueriesContextTypes);
+
+    const token = CookieSerializer.deserialize();
 
     const history = config.iso ? browserHistory : hashHistory;
 
-    ReactDOM.render(
-      <Router
-        history={history}
-        routes={createRoutes(routes)}
-        render={(props) => {
-          const { params, routes, location: { query } } = props;
-          if (doFetch) {
-            app.fetch(routes, app.getState({ params, query }));
-          } else {
-            doFetch = true;
-          }
-          return <RouterContext {...props} />;
-        }}
-        createElement={(Component, { params, children }) => {
-          const props = { app, params, ...intlData };
-          if (children) {
-            props.child = children;
-          }
-          return <Component {...props} />;
-        }}
-      />
-    , mountNode);
+    run({
+      mountNode,
+      initialState: { token },
+      routes,
+      history,
+      subscribe: s => {
+        console.log('>> state', s);
+        av.setState(s);
+      },
+      createElement: (Component, { children }) => {
+        const props = { ...intlData };
+        if (children) {
+          props.child = children;
+        }
+        return (
+          <Provider>
+            {() => <Component { ...props } />}
+          </Provider>
+        );
+      }
+    });
 
   };
 
