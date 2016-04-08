@@ -4,7 +4,9 @@ const impl = {
 
   login() {
     return Promise.resolve({
-      token: '123acb'
+      credentials: {
+        token: '123acb'
+      }
     });
   },
 

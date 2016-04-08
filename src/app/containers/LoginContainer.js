@@ -44,7 +44,10 @@ export default class LoginContainer extends React.Component {
   }
 
   doLogin = ({ username, password }) => {
-    return this.props.doLogin({ username, password });
+    return this.props.doLogin({ username, password }).then(({ token }) => this.props.transition({
+      view: redirectView,
+      token
+    }));
   };
 
   getLocals() {

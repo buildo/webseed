@@ -9,12 +9,22 @@ export default (API, /* queries */) => {
     params: { username: t.String, password: t.String },
     run: ({ username, password }) => API.login({ username, password }).then(({ credentials: { token } }) => {
       CookieSerializer.serialize(token);
-      return Promise.resolve({ token });
+      return { token };
     })
   });
 
+  const doLogout = Command({
+    id: 'doLogout',
+    params: {},
+    run: () => {
+      CookieSerializer.serialize(null);
+      return Promise.resolve(null);
+    }
+  });
+
   return {
-    doLogin
+    doLogin,
+    doLogout
   };
 
 };
