@@ -3,7 +3,7 @@
 </p>
 
 # webseed
-A base application for [avenger](http://github.com/buildo/avenger)-based web applications.
+A starter kit for [avenger](http://github.com/buildo/avenger)-based react web applications.
 
 ## Setup
 - Run `npm install`
