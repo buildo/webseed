@@ -1,3 +1,7 @@
+<p align='center'>
+  <img width='300' src='https://cloud.githubusercontent.com/assets/691940/14400225/44d78056-fdf5-11e5-9c83-f12ece2fae3a.jpg'>
+</p>
+
 # webseed
 A base application for [avenger](http://github.com/buildo/avenger)-based web applications.
 
