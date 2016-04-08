@@ -75,27 +75,27 @@ export default class Login extends React.Component {
     return (
       <FlexView
         column
-        vAlignContent="center"
-        hAlignContent="center"
-        className="login"
+        vAlignContent='center'
+        hAlignContent='center'
+        className='login'
       >
 
-        <FlexView column vAlignContent="center" hAlignContent="center" className="login-form-wrapper">
+        <FlexView column vAlignContent='center' hAlignContent='center' className='login-form-wrapper'>
 
-          <FlexView column className="login-form-input-wrapper login-form-username">
-            <label className="label">{this.formatMessage('Login.username')}</label>
+          <FlexView column className='login-form-input-wrapper login-form-username'>
+            <label className='label'>{this.formatMessage('Login.username')}</label>
             <input
-              className="input-text"
+              className='input-text'
               value={username}
               onChange={e => this.setState({ username: e.target.value })}
             />
           </FlexView>
 
-          <FlexView column className="login-form-input-wrapper login-form-password">
-            <label className="label">{this.formatMessage('Login.password')}</label>
+          <FlexView column className='login-form-input-wrapper login-form-password'>
+            <label className='label'>{this.formatMessage('Login.password')}</label>
             <input
               type={showPassword ? 'text' : 'password'}
-              className="input-text"
+              className='input-text'
               value={password}
               onChange={e => this.setState({ password: e.target.value })}
             />
@@ -106,9 +106,9 @@ export default class Login extends React.Component {
             />
           </FlexView>
 
-          <FlexView className="login-form-input-wrapper login-form-button-wrapper">
+          <FlexView className='login-form-input-wrapper login-form-button-wrapper'>
             <Button primary
-              size="large"
+              size='large'
               buttonState={buttonState}
               label={{
                 ready: this.formatMessage('Login.login'),
@@ -116,7 +116,7 @@ export default class Login extends React.Component {
                 error: this.formatMessage('Login.error'),
                 processing: this.formatMessage('Login.processing')
               }}
-              className="login-form-button"
+              className='login-form-button'
               onClick={submitLogin}
             />
           </FlexView>

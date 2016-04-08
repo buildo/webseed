@@ -3,9 +3,8 @@
   "hostname": "0.0.0.0",
   "port": 9090,
   "apiEndpoint": "http://localhost:8080",
-  "iso": false,
+  "eslint": true,
   "uglify": true,
   "gzip": true,
-  "title": "Yet another revenge app",
-  "remote": true
+  "title": "Yet another revenge app"
 }

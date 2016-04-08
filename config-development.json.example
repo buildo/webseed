@@ -1,11 +1,12 @@
 {
+  "NODE_ENV": "development",
+  "hostname": "localhost",
   "port": 9090,
   "apiEndpoint": "http://localhost:8080",
-  "iso": false,
   "eslint": true,
   "devTool": "source-map",
   "title": "Yet another revenge app",
   "username": "a",
   "password": "a",
-  "debug": "app*,*API*,revenge*,Avenger"
+  "debug": "app*,state*,react-avenger*"
 }

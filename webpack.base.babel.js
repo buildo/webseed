@@ -16,24 +16,6 @@ const preLoaders = config.eslint ? [{
   exclude: paths.ASSETS
 }] : [];
 
-const replaceModule = ({ module, replacement }) => {
-  return {
-    apply(resolver) {
-      resolver.plugin('module', function (req, cb) {
-        if (req.request === module) {
-          const request = {
-            path: req.path,
-            request: replacement
-          };
-          this.doResolve('module', request, cb);
-        } else {
-          cb();
-        }
-      });
-    }
-  };
-};
-
 module.exports = {
 
   resolve: {
@@ -65,11 +47,7 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       /intl\/locale-data\/jsonp$/,
       new RegExp('^\.\/(' + supportedLocales.join('|') + ')\.js$')
-    ),
-    new webpack.ResolverPlugin([replaceModule({
-      module: 'react/lib/invariant',
-      replacement: 'invariant'
-    })])
+    )
   ],
 
   module: {
@@ -78,7 +56,10 @@ module.exports = {
       test: /\.jsx?$/, // test for both js and jsx
       loaders: ['babel'],
       exclude: [paths.ASSETS],
-      include: [paths.SRC, paths.TEST, /buildo-react-components/, /react-intl-hoc/]
+      include: [
+        paths.SRC, paths.TEST, /buildo-react-components/, /react-autosize-textarea/,
+        /node_modules\/state/, /state-react-router/, /react-avenger/
+      ]
     }, {
       test: /\.json$/,
       loader: 'json'
@@ -90,7 +71,8 @@ module.exports = {
       loader: 'file?name=[path][name].[ext]'
     }, {
       test: paths.THEME_VARIABLES,
-      loader: 'sass-variable'
+      loader: 'sass-variables'
     }]
   }
+
 };

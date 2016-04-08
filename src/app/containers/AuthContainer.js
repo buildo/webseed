@@ -1,22 +1,41 @@
 import React from 'react';
-import { queries, props, t } from 'revenge';
-import { User } from 'domain';
+import { RouteHandler } from 'react-router';
+import { props, t } from 'revenge';
+import declareConnect from 'declareConnect';
 
-@queries(['user'])
+const connect = declareConnect({
+  token: t.maybe(t.String),
+  view: t.String
+}, { pure: false });
+
+@connect
 @props({
-  app: t.Object,
-  child: t.ReactChild,
-  params: t.Object,
-  user: t.maybe(User),
-  readyState: t.Object
+  ...connect.Type
 })
 export default class AuthContainer extends React.Component {
 
+  shouldRedirect({ token, view }) {
+    return !token && view !== 'login';
+  }
+
+  maybeRedirect(props) {
+    if (this.shouldRedirect(props)) {
+      this.props.transition({
+        view: 'login'
+      });
+    }
+  }
+
+  componentWillMount() {
+    this.maybeRedirect(this.props);
+  }
+
+  componentWillReceiveProps(props) {
+    this.maybeRedirect(props);
+  }
+
   render() {
-    const { user, child, readyState, ...other } = this.props;
-    return user ? (
-      React.cloneElement(child, { user, ...other })
-    ) : null;
+    return <RouteHandler />;
   }
 
 }

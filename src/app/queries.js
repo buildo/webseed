@@ -1,11 +1,17 @@
-import { Query } from 'revenge';
+import { Query } from 'avenger';
+import t from 'tcomb';
+import { User } from 'domain';
 
 export default (API) => {
 
   const user = Query({
     id: 'user',
-    fetch: () => () => {
-      return API.getUser();
+    params: {
+      token: t.String
+    },
+    returnType: User,
+    fetch: ({ token }) => {
+      return API.getUser(token);
     }
   });
 

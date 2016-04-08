@@ -1,27 +1,15 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-import { AuthenticatedRoute, LoginRoute } from './auth';
+import { Route } from 'react-router';
 import App from 'AppContainer';
 import Hello from 'HelloContainer';
 import Login from 'LoginContainer';
 import Auth from 'AuthContainer';
 
-const authenticatedRoutes = (
-  <IndexRoute component={Hello} handler={Hello} />
-);
-
 export default (
-  <Route component={App} handler={App}>
-    {LoginRoute({
-      path: '/login',
-      component: Login,
-      authenticatedPath: '/'
-    })}
-    {AuthenticatedRoute({
-      path: '/',
-      component: Auth,
-      loginPath: '/login',
-      children: authenticatedRoutes
-    })}
+  <Route name='main' path='/' handler={App}>
+    <Route name='login' handler={Login} />
+    <Route handler={Auth}>
+      <Route component={Hello} handler={Hello} />
+    </Route>
   </Route>
 );

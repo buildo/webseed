@@ -1,17 +1,20 @@
-// import { Command } from 'revenge';
+import { Command } from 'avenger';
+import { CookieSerializer } from 'revenge';
+import t from 'tcomb';
 
-export default (/* API, queries */) => {
+export default (API, /* queries */) => {
 
-  // const doUpdateThing = (token, thing) => Command({
-  //   invalidates: queries.user,
-  //   run: () => API.updateThing({
-  //     token,
-  //     data: thing
-  //   })
-  // });
+  const doLogin = Command({
+    id: 'doLogin',
+    params: { username: t.String, password: t.String },
+    run: ({ username, password }) => API.login({ username, password }).then(({ credentials: { token } }) => {
+      CookieSerializer.serialize(token);
+      return Promise.resolve({ token });
+    })
+  });
 
   return {
-    // doUpdateThing
+    doLogin
   };
 
 };
