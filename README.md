@@ -21,10 +21,11 @@ A basic avenger application, with some common functionalities already in place.
 
 ## Table of Contents
 1. [Queries](#queries)
-2. [Authentication](#authentication)
-3. [i18n](#i18n)
-4. [Basic components](#basic-components)
-5. [Domain model](#domain-model)
+2. [Commands](#commands)
+3. [Authentication](#authentication)
+4. [i18n](#i18n)
+5. [Basic components](#basic-components)
+6. [Domain model](#domain-model)
 
 ## Queries
 [`avenger`](https://github.com/buildo/avenger) allows declaring data dependencies via `Query`.
