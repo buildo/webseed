@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router';
-import App from 'AppContainer';
-import Hello from 'HelloContainer';
-import Login from 'LoginContainer';
-import Auth from 'AuthContainer';
+import App from 'AppHandler';
+import Hello from 'HelloHandler';
+import Login from 'LoginHandler';
+import Auth from 'AuthHandler';
 
 export default (
   <Route name='main' path='/' handler={App}>

@@ -12,7 +12,7 @@ const connect = declareConnect({
 @props({
   ...connect.Type
 })
-export default class AuthContainer extends React.Component {
+export default class AuthHandler extends React.Component {
 
   shouldRedirect({ token, view }) {
     return !token && view !== 'login';

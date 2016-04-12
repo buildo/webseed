@@ -24,7 +24,7 @@ module.exports = {
       paths.APP,
       paths.COMPONENTS,
       paths.BASIC_COMPONENTS,
-      paths.CONTAINERS,
+      paths.ROUTES,
       paths.DOMAIN
     ]
   },

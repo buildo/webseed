@@ -12,9 +12,40 @@ const __DEV = process.env.NODE_ENV === 'development';
 @intlMethods
 @skinnable()
 @props({
-  doLogin: t.Func
+  doLogin: t.Function,
+  redirectView: t.String,
+  token: t.maybe(t.String),
+  view: t.String,
+  transition: t.Function
 })
 export default class Login extends React.Component {
+
+  shouldRedirect({ token, view }) {
+    return token && view === 'login';
+  }
+
+  maybeRedirect(props) {
+    if (this.shouldRedirect(props)) {
+      this.props.transition({
+        view: this.props.redirectView
+      });
+    }
+  }
+
+  componentWillMount() {
+    this.maybeRedirect(this.props);
+  }
+
+  componentWillReceiveProps(props) {
+    this.maybeRedirect(props);
+  }
+
+  doLogin = ({ username, password }) => {
+    return this.props.doLogin({ username, password }).then(({ token }) => this.props.transition({
+      view: this.props.redirectView,
+      token
+    }));
+  };
 
   constructor(props) {
     super(props);
@@ -29,7 +60,7 @@ export default class Login extends React.Component {
   submitLogin = () => {
     const { username, password } = this.state;
     this.setState({ buttonState: 'processing' });
-    return this.props.doLogin({ username, password }).then(this.onSuccess, this.onFailure);
+    return this.doLogin({ username, password }).then(this.onSuccess, this.onFailure);
   };
 
   onSuccess = () => this.setState({ buttonState: 'success' });
