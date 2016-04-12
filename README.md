@@ -85,9 +85,9 @@ Same goes for the [`Intl.js` polyfill](https://github.com/andyearnshaw/Intl.js/)
 ## Components taxonomy
 Components can conceptually be of three kinds:
 
- - handlers: components referenced directly by react-router's routes. They don't manage data.
- - containers: components managing data. They don't do any layout.
- - plain components: pure components receving data and returing some JSX
+ - *handlers*: components referenced directly by react-router's routes. They don't manage data.
+ - *containers*: components managing data. They don't do any layout.
+ - *plain components*: pure components receving data and returing some JSX
  
 A more extended description is available at: https://github.com/buildo/webseed/blob/master/components-taxonomy.md
 
