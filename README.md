@@ -81,8 +81,18 @@ In order to keep the bundle size as small as possible, locale files are dynamica
 
 Same goes for the [`Intl.js` polyfill](https://github.com/andyearnshaw/Intl.js/) required by some browsers (e.g. Safari): it is provided as a separate bundle and requested only if needed.
 
+## Components taxonomy
+Components can conceptually be of three kinds:
+
+ - handlers: components referenced directly by react-router's routes. They don't manage data.
+ - containers: components managing data. They don't do any layout.
+ - plain components: pure components receving data and returing some JSX
+ 
+A more extended description is available at: https://github.com/buildo/webseed/blob/master/components-taxonomy.md
+
 ## Basic components
-Basic components are building blocks for all the application's components. They are highly reusable components, and they are often customization over third parties components.
+Basic components are a special kind of plain components.
+They are building blocks for all the application's components. They are highly reusable components, and they are often customization over third parties components.
 
 This webseed comes with a dependency on [`buildo/react-components`](https://github.com/buildo/react-components) and some of them are cherry-picked in [`app/components/Basic/index.js`](https://github.com/buildo/webseed/blob/master/src/app/components/Basic/index.js).
 
