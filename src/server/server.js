@@ -23,7 +23,9 @@ if (!config.iso) {
   process.exit(-1);
 }
 
-const template = fs.readFileSync(path.resolve(__dirname, '../../build/index.html'), 'utf8').toString();
+const template =
+  fs.readFileSync(path.resolve(__dirname, '../../build/index.html'), 'utf8').toString();
+
 const app = express();
 
 const gzTypes = [{
@@ -34,7 +36,9 @@ const gzTypes = [{
   type: 'application/javascript'
 }];
 
-const supportedLocales = fs.readdirSync(path.resolve(__dirname, '../app/locales/')).map(localePath => localePath.split('.')[0]);
+const supportedLocales =
+  fs.readdirSync(path.resolve(__dirname, '../app/locales/'))
+    .map(localePath => localePath.split('.')[0]);
 
 app.use(express.static(path.resolve(__dirname, '../../build'), {
   index: false,
@@ -130,7 +134,9 @@ app.use((req, res, next) => {
 
   router.run((Handler, state) => {
     const { routes, params, query } = state;
-    app.fetch(routes, app.getState({ params, query })).then(render(Handler, req.locale)).catch(next);
+    app.fetch(routes, app.getState({ params, query }))
+      .then(render(Handler, req.locale))
+      .catch(next);
   });
 
 });

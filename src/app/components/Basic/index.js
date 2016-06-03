@@ -3,8 +3,9 @@ export Button from 'buildo-react-components/src/button';
 export Icon from 'buildo-react-components/src/Icon';
 export LoadingSpinner from './LoadingSpinner/LoadingSpinner';
 export {
-  intl, FormattedDate, FormattedNumber, FormattedRelative, FormattedTime, FormattedMessage, intlMethods, translateProps,
-  childContextTypes, getChildContext, contextTypes
+  intl, FormattedDate, FormattedNumber, FormattedRelative, FormattedTime,
+  FormattedMessage, intlMethods, translateProps, childContextTypes,
+  getChildContext, contextTypes
 } from './intlHelpers/';
 export contains from './contains';
 export containerFactory from './containerFactory';

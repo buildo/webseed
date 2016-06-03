@@ -65,7 +65,10 @@ function renderApp(mountNode: HTMLElement) {
 
     const wrapCommand = (id, cmd, params) => {
       // not cloning args in any way, expecting everybody to be nice
-      return avenger.runCommand(cmd, params).catch(::console.error); // eslint-disable-line no-console
+      return avenger.runCommand(cmd, params).catch(err => {
+        console.error(err); // eslint-disable-line no-console
+        throw err;
+      });
     };
 
     const commands = Object.keys(_commands).reduce((ac, id) => ({
@@ -110,13 +113,22 @@ function renderApp(mountNode: HTMLElement) {
 
 }
 
-const supportedLocales = require.context('locales/', false, /^\.\/[^\.]*$/).keys().map(localePath => localePath.split('/')[1]);
+const supportedLocales =
+  require.context('locales/', false, /^\.\/[^\.]*$/).keys()
+    .map(localePath => localePath.split('/')[1]);
 
-export function main(mountNode: HTMLElement, initialState: ?Object, initialCache, requiredLocale: ?string) {
+export function main(
+  mountNode: HTMLElement,
+  initialState: ?Object,
+  initialCache,
+  requiredLocale: ?string
+) {
   const localeSupported = supportedLocales.indexOf(requiredLocale) !== -1;
   const locale = localeSupported ? requiredLocale : 'en';
 
   log(`locale required: ${requiredLocale}, actual: ${locale}`);
 
-  loadLocale(locale).then(renderApp(mountNode, initialState, initialCache)).catch(::console.error); // eslint-disable-line no-console
+  loadLocale(locale)
+    .then(renderApp(mountNode, initialState, initialCache))
+    .catch(::console.error); // eslint-disable-line no-console
 }

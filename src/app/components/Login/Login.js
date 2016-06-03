@@ -65,7 +65,9 @@ export default class Login extends React.Component {
 
   onSuccess = () => this.setState({ buttonState: 'success' });
 
-  onFailure = () => this.setState({ buttonState: 'error' }, () => setTimeout(() => this.setState({ buttonState: 'ready' }), 2000));
+  onFailure = () => this.setState(
+    { buttonState: 'error' }, () => setTimeout(() => this.setState({ buttonState: 'ready' }), 2000)
+  );
 
   onKeyPress = ({ which, keyCode }) => (which === 13 || keyCode === 13) && this.onEnterKeyPress();
 
@@ -111,7 +113,11 @@ export default class Login extends React.Component {
         className='login'
       >
 
-        <FlexView column vAlignContent='center' hAlignContent='center' className='login-form-wrapper'>
+        <FlexView column
+          vAlignContent='center'
+          hAlignContent='center'
+          className='login-form-wrapper'
+        >
 
           <FlexView column className='login-form-input-wrapper login-form-username'>
             <label className='label'>{this.formatMessage('Login.username')}</label>

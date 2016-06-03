@@ -4,6 +4,11 @@ import { FlexView } from 'Basic';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 export default loading({
-  wrapper: <FlexView grow vAlignContent='center' style={{ width: '100%', height: '100%', position: 'relative' }} />,
+  wrapper:
+    <FlexView
+      grow
+      vAlignContent='center'
+      style={{ width: '100%', height: '100%', position: 'relative' }}
+    />,
   loader: <LoadingSpinner />
 });

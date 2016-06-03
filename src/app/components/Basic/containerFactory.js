@@ -34,7 +34,12 @@ const _containerFactory = (Component, {
     declaredConnect,
     loader
   ]));
-  return (getComponentProps = (props) => pick(props, [...(queries || []), ...(commands || []), ...Object.keys(connect || {})])) => (
+  return (getComponentProps = (props) =>
+          pick(props, [
+            ...(queries || []),
+            ...(commands || []),
+            ...Object.keys(connect || {})
+          ])) => (
     @composedDecorators
     @skinnable(contains(Component))
     @pure
@@ -47,6 +52,7 @@ const _containerFactory = (Component, {
 
 };
 
-const containerFactory = t.func([t.Function, argumentsTypes], t.Function).of(_containerFactory, true);
+const containerFactory = t.func([t.Function, argumentsTypes], t.Function)
+  .of(_containerFactory, true);
 
 export default (Component, args) => containerFactory(Component, argumentsTypes(args));
