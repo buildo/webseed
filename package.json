@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "avenger": "^0.2.6",
-    "buildo-react-components": "github:buildo/react-components",
+    "buildo-react-components": "github:buildo/react-components#react-0.13",
     "debug": "^2.2.0",
     "intl": "^1.0.1",
     "invariant": "^2.2.0",
