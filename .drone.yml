@@ -1,0 +1,8 @@
+build:
+  webseed:
+    image: quay.io/buildo/node5-npm3
+    commands:
+      - npm install
+      - npm run lint
+      - mv config-production.json.example config.json
+      - npm run build
