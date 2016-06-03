@@ -65,7 +65,10 @@ function renderApp(mountNode: HTMLElement) {
 
     const wrapCommand = (id, cmd, params) => {
       // not cloning args in any way, expecting everybody to be nice
-      return avenger.runCommand(cmd, params).catch(::console.error); // eslint-disable-line no-console
+      return avenger.runCommand(cmd, params).catch(err => {
+        console.error(err); // eslint-disable-line no-console
+        throw err;
+      });
     };
 
     const commands = Object.keys(_commands).reduce((ac, id) => ({
