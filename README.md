@@ -34,14 +34,14 @@ A basic avenger application, with some common functionalities already in place.
 [`avenger`](https://github.com/buildo/avenger) allows declaring data dependencies via `Query`.
 Using `react-avenger` a component can declare a dependency from a query.
 
-An example of usage is shown in [`app/containers/HelloContainer.js`](https://github.com/buildo/webseed/blob/master/src/app/containers/HelloContainer.js), that uses the `user` query.
+An example of usage is shown in [`app/components/Hello/HelloContainer.js`](https://github.com/buildo/webseed/blob/master/src/app/components/Hello/HelloContainer.js), that uses the `user` query.
 
 Queries definitions are in [`app/queries.js`](https://github.com/buildo/webseed/blob/master/src/app/queries.js). This webseed comes with an example query, which is the aforementioned `user` query.
 
 ## Commands
 [`avenger`](https://github.com/buildo/avenger) also provides `Command`. A `Command` execute an action and potentially invalidates a set of queries. As with queries, `react-avenger` provides a way of declaring the commands needed by a component.
 
-An example of usage is shown in [`app/containers/LoginContainer.js`](https://github.com/buildo/webseed/blob/master/src/app/containers/LoginContainer.js), that uses the `doLogin` command.
+An example of usage is shown in [`app/components/Login/LoginContainer.js`](https://github.com/buildo/webseed/blob/master/src/app/components/Login/LoginContainer.js), that uses the `doLogin` command.
 
 Commands definitions are in [`app/commands.js`](https://github.com/buildo/webseed/blob/master/src/app/commands.js). This webseed comes with two example commands: `doLogin` and `doLogout`.
 
