@@ -6,7 +6,5 @@
   "eslint": true,
   "devTool": "source-map",
   "title": "Yet another revenge app",
-  "username": "a",
-  "password": "a",
   "debug": "app*,state*,react-avenger*"
 }

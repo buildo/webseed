@@ -58,12 +58,14 @@
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
     "react-avenger": "github:buildo/react-avenger",
+    "react-container": "github:buildo/react-container",
     "react-intl-hoc": "^0.1.5",
     "react-router": "^0.13.3",
     "react-router-transition-context": "^0.13.3",
-    "revenge": "^0.3.6",
+    "revenge": "^0.4.4",
     "rxjs": "5.0.0-beta.4",
     "state": "github:buildo/state",
-    "state-react-router": "github:buildo/state-react-router"
+    "state-react-router": "github:buildo/state-react-router",
+    "tcomb-react": "^0.9.0"
   }
 }
