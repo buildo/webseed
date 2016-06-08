@@ -12,8 +12,6 @@ const Config = t.struct({
   remote: t.maybe(t.Bool),  // default: false
   eslint: t.maybe(t.Bool),  // default: false
   devTool: t.maybe(t.enums.of(['eval', 'source-map'])), // default: source-map
-  username: t.maybe(t.Str), // default: undefined (ignored)
-  password: t.maybe(t.Str), // default: undefined (ignored)
   debug: t.maybe(t.Str),    // default: undefined (no debug)
   localStringLengthMultiplier: t.maybe(t.Num) // default: undefined (ignored, behaves as === 1)
 }, 'Config');
