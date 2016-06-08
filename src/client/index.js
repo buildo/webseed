@@ -24,15 +24,6 @@ if (process.env.NODE_ENV === 'development') {
   // export for debug
   window.React = React;
 
-  // fail loudly
-  t.fail = function(message) {
-    if (!t.fail.failed) {
-      debugger; //eslint-disable-line no-debugger
-      t.fail.failed = true;
-    }
-    throw new TypeError(message);
-  };
-
   debug.enable(config.debug || '');
 } else {
   debug.disable();
