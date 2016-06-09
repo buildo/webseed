@@ -9,7 +9,8 @@ import './hello.scss';
 @props({
   formal: t.Boolean,
   toggle: t.Function,
-  user: t.String
+  user: t.String,
+  onRefreshClick: t.Function
 })
 export default class Hello extends React.Component {
 
@@ -21,18 +22,19 @@ export default class Hello extends React.Component {
   }
 
   getLocals() {
-    const { toggle, user } = this.props;
+    const { toggle, user, onRefreshClick } = this.props;
     const greeting = this.props.formal ? this.formalGreeting() : 'Hello';
 
-    return { toggle, greeting, user };
+    return { toggle, greeting, user, onRefreshClick };
   }
 
-  template({ toggle, greeting, user }) {
+  template({ toggle, greeting, user, onRefreshClick }) {
     return (
       <div className='hello'>
         <h1>
           <a onClick={toggle}>{greeting}</a> {user}
         </h1>
+        <a onClick={onRefreshClick}>(refresh)</a>
       </div>
     );
   }
