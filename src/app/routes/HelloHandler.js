@@ -1,5 +1,5 @@
 import React from 'react';
-import Hello from 'Hello/Hello';
+import Hello from 'Hello/HelloContainer';
 
 export default class HelloHandler extends React.Component {
 
