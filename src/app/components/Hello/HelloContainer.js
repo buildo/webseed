@@ -1,14 +1,19 @@
 import Hello from './Hello';
 import t from 'tcomb';
-import container from 'react-container';
+import containerFactory from 'react-container';
+import allQueries from 'queries';
+
+const container = containerFactory({ allQueries });
 
 const HelloContainer = container(Hello, {
   connect: { formal: t.maybe(t.Boolean) },
-  mapProps: ({ transition, formal = false }) => ({
+  queries: ['user'],
+  mapProps: ({ transition, formal = false, user }) => ({
     toggle: () => {
       transition({ formal: !formal });
     },
-    formal
+    formal,
+    user: user || '...'
   })
 });
 

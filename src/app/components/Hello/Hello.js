@@ -8,7 +8,8 @@ import './hello.scss';
 @skinnable()
 @props({
   formal: t.Boolean,
-  toggle: t.Function
+  toggle: t.Function,
+  user: t.String
 })
 export default class Hello extends React.Component {
 
@@ -20,17 +21,17 @@ export default class Hello extends React.Component {
   }
 
   getLocals() {
-    const { toggle } = this.props;
+    const { toggle, user } = this.props;
     const greeting = this.props.formal ? this.formalGreeting() : 'Hello';
 
-    return { toggle, greeting };
+    return { toggle, greeting, user };
   }
 
-  template({ toggle, greeting }) {
+  template({ toggle, greeting, user }) {
     return (
       <div className='hello'>
         <h1>
-          <a onClick={toggle}>{greeting}</a>
+          <a onClick={toggle}>{greeting}</a> {user}
         </h1>
       </div>
     );
