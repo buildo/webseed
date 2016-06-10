@@ -1,7 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import t from 'tcomb';
 import config from '../../config';
-import { CookieSerializer, t } from 'revenge';
-import Router from 'react-router-transition-context';
+import Router from 'react-router';
 import {
   makeOnBrowserChange,
   mergeStateAndBrowserState,
@@ -37,6 +38,7 @@ import mkAvenger from 'avenger';
 import run from 'state/run';
 import { QueriesContextTypes } from 'declareQueries';
 import { CommandsContextTypes } from 'declareCommands';
+import CookieSerializer from 'CookieSerializer';
 
 const log = debug('app:client');
 
@@ -84,7 +86,7 @@ function renderApp(mountNode: HTMLElement) {
         ...QueriesContextTypes, ...CommandsContextTypes
       },
       render: (element: t.ReactElement) => {
-        React.render(element, mountNode);
+        ReactDOM.render(element, mountNode);
       },
       subscribe: s => {
         log('state', s);

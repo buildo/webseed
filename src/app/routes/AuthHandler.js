@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteHandler } from 'react-router';
-import { props, t } from 'revenge';
+import { props, t } from 'tcomb-react';
 import declareConnect from 'declareConnect';
 
 const connect = declareConnect({

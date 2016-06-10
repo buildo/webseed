@@ -1,6 +1,6 @@
 import config from '../../config';
 import { repeat, partialRight } from 'lodash';
-import { t } from 'revenge';
+import { t } from 'tcomb-react';
 
 function longerStrings(data) {
   if (!t.Num.is(config.localStringLengthMultiplier) || config.localStringLengthMultiplier === 1) {

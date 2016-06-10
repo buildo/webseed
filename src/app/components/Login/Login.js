@@ -1,5 +1,6 @@
 import React from 'react';
-import { pure, skinnable, props, t } from 'revenge';
+import { pure, skinnable } from 'revenge';
+import { props, t } from 'tcomb-react';
 import { FlexView, Button, Icon, intlMethods } from 'Basic';
 import cx from 'classnames';
 import config from '../../../../config';
@@ -145,7 +146,7 @@ export default class Login extends React.Component {
 
           <FlexView className='login-form-input-wrapper login-form-button-wrapper'>
             <Button primary
-              size='large'
+              size='medium'
               buttonState={buttonState}
               label={{
                 ready: this.formatMessage('Login.login'),
