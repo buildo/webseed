@@ -1,5 +1,6 @@
 import React from 'react';
-import { skinnable, props, t, pure } from 'revenge';
+import { skinnable, pure } from 'revenge';
+import { props, t } from 'tcomb-react';
 import LoadingSpinnerBuildo from 'buildo-react-components/src/loading-spinner';
 
 import 'buildo-react-components/src/loading-spinner/style.scss';

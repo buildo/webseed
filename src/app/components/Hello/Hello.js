@@ -1,5 +1,6 @@
 import React from 'react';
-import { t, skinnable, props, pure } from 'revenge';
+import { skinnable, pure } from 'revenge';
+import { props, t } from 'tcomb-react';
 import { intlMethods } from 'intlHelpers';
 import { FlexView } from 'Basic';
 

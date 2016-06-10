@@ -1,5 +1,5 @@
 import { Command } from 'avenger';
-import { CookieSerializer } from 'revenge';
+import CookieSerializer from 'CookieSerializer';
 import t from 'tcomb';
 
 export default (API, /* queries */) => {

@@ -1,4 +1,4 @@
-import { t } from 'revenge';
+import { t } from 'tcomb-react';
 
 const Gender = t.enums.of(['male', 'female'], 'Gender');
 

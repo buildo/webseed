@@ -1,5 +1,6 @@
 import React from 'react';
-import { pure, skinnable, props, t } from 'revenge';
+import { pure, skinnable } from 'revenge';
+import { props, t } from 'tcomb-react';
 import { Button } from 'Basic';
 
 @pure
