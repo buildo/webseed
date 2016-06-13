@@ -53,6 +53,16 @@ function renderApp(mountNode: HTMLElement) {
     initialState,
     syncToBrowser: makeSyncToBrowser(router),
     mergeStateAndBrowserState,
+    transitionReducer: ({ view, ...state }) => {
+      const token = localStorage.getItem('token') || state.token;
+      return {
+        ...state,
+        token,
+        view: (t.Nil.is(token) && 'login')
+          || (!t.Nil.is(token) && view === 'login' && 'hello')
+          || (view || 'hello')
+      };
+    },
     provideContext: {
       avenger, commands
     },

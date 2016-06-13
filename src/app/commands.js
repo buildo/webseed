@@ -7,6 +7,22 @@ const commands = {
     id: 'doRefreshUser',
     invalidates: { user: queries.user },
     run: ::Promise.resolve
+  }),
+
+  doLogin: Command({
+    id: 'doLogin',
+    run: () => {
+      localStorage.setItem('token', String(Date.now()));
+      return Promise.resolve();
+    }
+  }),
+
+  doLogout: Command({
+    id: 'doLogout',
+    run: () => {
+      localStorage.removeItem('token');
+      return Promise.resolve();
+    }
   })
 
 };

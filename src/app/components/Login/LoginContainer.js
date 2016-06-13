@@ -5,9 +5,12 @@ import allCommands from 'commands';
 
 export default container({ allCommands })(Login, {
   connect: { token: t.maybe(t.String) },
-  mapProps: ({ transition }) => ({
+  commands: ['doLogin'],
+  mapProps: ({ transition, doLogin }) => ({
     onLoginClick: () => {
-      transition({ view: 'hello' });
+      doLogin().then(() => {
+        transition({ view: 'hello' });
+      });
     }
   })
 });

@@ -18,18 +18,18 @@ const loadingDecorator = loading({
 const HelloContainer = container(Hello, {
   connect: { formal: t.maybe(t.Boolean) },
   queries: ['user'],
-  commands: ['doRefreshUser'],
+  commands: ['doRefreshUser', 'doLogout'],
   loadingDecorator,
-  mapProps: ({ transition, formal = false, user, doRefreshUser }) => ({
+  mapProps: ({ transition, formal = false, user, doRefreshUser, doLogout }) => ({
     toggle: () => {
       transition({ formal: !formal });
     },
     formal,
     user,
     onRefreshClick: () => doRefreshUser(),
-    onLogoutClick: () => {
+    onLogoutClick: () => doLogout().then(() => {
       transition({ view: 'login' });
-    }
+    })
   })
 });
 

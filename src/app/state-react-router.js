@@ -5,7 +5,7 @@ import routerDiff from 'state-react-router/routerDiff';
 const routerStateKey = 'view';
 
 // insert here any parameter that you don't want to serialize in the URL
-const ignoreParams = [ routerStateKey ];
+const ignoreParams = [ routerStateKey, 'token' ];
 
 export const {
   makeOnBrowserChange,
