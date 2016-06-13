@@ -26,7 +26,10 @@ const HelloContainer = container(Hello, {
     },
     formal,
     user,
-    onRefreshClick: () => doRefreshUser()
+    onRefreshClick: () => doRefreshUser(),
+    onLogoutClick: () => {
+      transition({ view: 'login' });
+    }
   })
 });
 
