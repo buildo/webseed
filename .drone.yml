@@ -1,6 +1,6 @@
 build:
   webseed:
-    image: quay.io/buildo/node5-npm3
+    image: node:5
     commands:
       - npm install
       - npm run lint
