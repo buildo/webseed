@@ -1,20 +1,16 @@
-// BORDER-BOX
+@import './variables.scss';
 
-html {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-// PREVENT BOUNCE SCROLLING IN OSX
-
-html {
-  overflow: hidden;
-}
-
-html, body, #app {
+// THEME
+.layout,
+.layout > div {
   height: 100%;
-  width: 100%;
+}
+
+:focus {
+  outline: none;
+}
+
+.focused > * {
+  outline: -webkit-focus-ring-color auto 5px;
+  outline-color: $mediumBlue;
 }

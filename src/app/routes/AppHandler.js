@@ -1,24 +1,23 @@
 import React from 'react';
+import { props } from 'tcomb-react';
+import { IntlProvider } from 'Basic';
+import t from 'tcomb';
 import { RouteHandler } from 'react-router';
-import { props, t } from 'tcomb-react';
-import { intl, FlexView } from 'Basic';
 
-const intlProps = {
+@props({
   messages: t.Any,
-  locales: t.list(t.Str),
-  formats: t.Any
-};
-
-@intl
-@props(intlProps)
+  locales: t.list(t.String),
+  formats: t.Any,
+  locale: t.String
+})
 export default class AppHandler extends React.Component {
-
-  render() {
+  render = () => {
     return (
-      <FlexView column hAlignContent='center' height='100%'>
-        <RouteHandler />
-      </FlexView>
+      <IntlProvider {...this.props}>
+        <div className='layout'>
+          <RouteHandler />
+        </div>
+      </IntlProvider>
     );
   }
-
 }

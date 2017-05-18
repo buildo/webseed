@@ -1,34 +1,18 @@
 import React from 'react';
-import { skinnable, pure } from 'revenge';
-import { props, t } from 'tcomb-react';
-import { intlMethods } from 'intlHelpers';
-import { FlexView } from 'Basic';
+import { intlMethods } from 'Basic';
+import { pure } from 'revenge';
 
 import './hello.scss';
 
-@intlMethods
 @pure
-@skinnable()
-@props({
-  username: t.String
-})
+@intlMethods
 export default class Hello extends React.Component {
 
-  getLocals() {
-    const { username } = this.props;
-    const greeting = this.formatMessage('Hello.hello');
-
-    return {
-      username,
-      greeting
-    };
-  }
-
-  template({ greeting, username }) {
+  render() {
     return (
-      <FlexView className='hello'>
-        <h2>{greeting} {username}</h2>
-      </FlexView>
+      <div className='hello'>
+        <h1>{this.formatMessage('Hello.hello')}</h1>
+      </div>
     );
   }
 

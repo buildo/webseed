@@ -1,3 +1,7 @@
-require('normalize.css/normalize.css');
-require('./main.scss');
-require('./typography.scss');
+import 'buildo-normalize-css';
+import 'buildo-normalize-css/fullscreenApp.css';
+
+import './main.scss';
+import './typography.scss';
+
+
