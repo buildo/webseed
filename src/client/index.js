@@ -1,8 +1,6 @@
 import config from 'config';
 import prelude from './prelude';
 import { addLocaleData } from 'react-intl';
-import itLocaleData from 'react-intl/locale-data/it';
-import enLocaleData from 'react-intl/locale-data/en';
 import { transitionReducer } from 'transitions';
 import { isLocalKey } from 'buildo-react-container';
 
@@ -14,23 +12,27 @@ const routes = require('routes').default;
 const queries = require('queries').default;
 const commands = require('commands');
 
+const addLocaleDataAndResolve = (locale, resolve) => {
+  return (intl, localeData) => {
+    addLocaleData(localeData);
+    resolve({ ...intl, locale });
+  };
+};
+
 function loadLocaleMessages(locale) {
   return new Promise(resolve => {
     switch (locale) {
       case 'it':
-        addLocaleData(itLocaleData);
-        return require(['locales/it'], (intl) => resolve({
-          ...intl,
-          locale
-        }));
-
+        return require(
+          ['locales/it', 'react-intl/locale-data/it'],
+          addLocaleDataAndResolve(locale, resolve)
+        );
       case 'en':
       default:
-        addLocaleData(enLocaleData);
-        return require(['locales/en'], (intl) => resolve({
-          ...intl,
-          locale
-        }));
+        return require(
+          ['locales/en', 'react-intl/locale-data/en'],
+          addLocaleDataAndResolve(locale, resolve)
+        );
     }
   });
 }
