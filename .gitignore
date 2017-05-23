@@ -1,13 +1,7 @@
 *.log
 *.log*
-config.json
-config*.json~
-!deploy/config.json
-tmp-config.json
 node_modules
 build/*
 *.tags*
-metarpheus.jar
-deploy/build/*
 .eslintcache
 .DS_Store
