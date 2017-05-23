@@ -1,18 +1,8 @@
 {
-  "locales": ["en"],
+  "locales": [
+    "en"
+  ],
   "messages": {
-    "App": {
-      "title": "Yet another revenge app"
-    },
-    "Hello": {
-      "hello": "hello"
-    },
-    "Login": {
-      "login": "Login",
-      "username": "username",
-      "password": "password",
-      "error": "error",
-      "processing": "processing"
-    }
+    "Hello.hello": "Hello!"
   }
 }

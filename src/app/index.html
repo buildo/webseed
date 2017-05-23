@@ -4,27 +4,46 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>__TITLE__</title>
-    {% if (o.htmlWebpackPlugin.options.bundle) { %}
-      {% if (o.htmlWebpackPlugin.files && o.htmlWebpackPlugin.files.chunks) { %}
-        {% if (o.htmlWebpackPlugin.files.chunks.main && o.htmlWebpackPlugin.files.chunks.main.css) { %}
-          {% for (var chunk in o.htmlWebpackPlugin.files.chunks.main.css) { %}
-            <link rel="stylesheet" href="{%=o.htmlWebpackPlugin.files.chunks.main.css[chunk]%}" media="all">
-          {% } %}
-        {% } %}
-      {% } %}
-    {% } %}
+    <% for (var chunk in htmlWebpackPlugin.files.chunks.main.css) { %>
+      <link
+        rel="stylesheet"
+        href="<%= htmlWebpackPlugin.options.buildPath %><%= htmlWebpackPlugin.files.chunks.main.css[chunk]%>"
+        media="all"
+      />
+    <% } %>
+    <title><%=htmlWebpackPlugin.options.title %></title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,500,600,700' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div id="app">__CONTENT__</div>
-    <script src="/bundle.js__GZIP__"></script>
+    <div id="app"></div>
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script
+      type='text/javascript'
+      src="<%= htmlWebpackPlugin.options.buildPath %><%= htmlWebpackPlugin.files.chunks[chunk].entry %>"
+    ></script>
+    <% } %>
     <script>
       (function () {
         var mountNode = document.getElementById('app');
-        var state = __STATE__;
-        var data = __DATA__;
-        var locale = __LOCALE__ || (navigator.languages || [])[0] || navigator.language || navigator.browserLanguage || 'en';
-        webclient.main(mountNode, state, data, locale);
+
+        // Locale
+        var cookieLocaleParts = document.cookie.split(';').map(function(v) {
+            return v.split('=');
+          }).filter(function(parts) {
+            if (parts[0].trim() === 'locale') {
+              return true;
+            }
+          })[0];
+          var cookieLocale = cookieLocaleParts && JSON.parse(decodeURIComponent(cookieLocaleParts[1]));
+
+        // make the "locale" cookie overridable by query param
+        var href = document.location.href;
+        var match = href.indexOf('locale=') !== -1 && /locale=([A-Za-z\-]+)/.exec(href);
+        var queryParamLocale = match && match[1];
+
+        var locale = queryParamLocale || cookieLocale || navigator.language || navigator.browserLanguage || 'en';
+
+        webclient.main(mountNode, locale);
       })();
     </script>
   </body>

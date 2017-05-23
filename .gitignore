@@ -1,6 +1,7 @@
 *.log
 *.log*
-config*.json
-config*.json~
 node_modules
 build/*
+*.tags*
+.eslintcache
+.DS_Store

@@ -1,22 +1,13 @@
 import t from 'tcomb';
 import identity from 'lodash/identity';
+import omitBy from 'lodash/omitBy';
 import routes from './routes';
-import _isViewActive from 'state-react-router/isViewActive';
-import routerDiff from 'state-react-router/routerDiff';
+import _isViewActive from 'buildo-state-react-router/lib/isViewActive';
+import routerDiff from 'buildo-state-react-router/lib/routerDiff';
+import shallowEqual from 'buildo-state/lib/shallowEqual';
 
 const routerStateKey = 'view';
-
-// insert here any path params that appears in the route definitions
-const routerStatePathParamKeys = [
-  'deviceId', 'installId', 'profileId', 'ruleIndex', 'appId', 'tagId'
-];
-
-// insert here any parameter that you don't want to serialize in the URL
-const ignoreParams = [
-  routerStateKey,
-  ...routerStatePathParamKeys,
-  'token'
-];
+const routerStatePathParamKeys = [];
 
 const boolean = {
   matchString: v => v === 'true' || v === 'false',
@@ -29,14 +20,23 @@ const paramsParsers = [
   boolean
 ];
 
+const shouldRouterPatchBePushed = ({
+  state: oldState, params: oldPathParams
+}, {
+  state: newState, params: newPathParams
+}) => oldState !== newState || !shallowEqual(
+  omitBy(oldPathParams, t.Nil.is),
+  omitBy(newPathParams, t.Nil.is)
+);
+
 export const {
   makeOnBrowserChange,
   makeSyncToBrowser
 } = routerDiff({
   routerStateKey,
   routerStatePathParamKeys,
-  ignoreParams,
-  paramsParsers
+  paramsParsers,
+  shouldRouterPatchBePushed
 });
 
 export const isViewActive = _isViewActive(routes);

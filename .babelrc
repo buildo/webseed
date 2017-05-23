@@ -1,7 +1,12 @@
 {
-  "presets": [ "es2015", "react", "stage-0" ],
-  "plugins": [
-    "transform-decorators-legacy",
-    "lodash"
+  "presets": [
+    ["buildo", {
+      "env": "react",
+      "targets": {
+        "chrome": 52,
+        "edge": 13,
+        "ie": 11
+      }
+    }]
   ]
 }
