@@ -37,11 +37,7 @@ function loadLocaleMessages(locale) {
   });
 }
 
-const serializeExclude = [
-  'locale', 'token',
-  'pickUpLocationQuery',
-  'dropOffLocationQuery'
-];
+const serializeExclude = ['locale', 'token'];
 
 const shouldSerializeKey = k => !isLocalKey(k) && serializeExclude.indexOf(k) === -1;
 export const main = baseIndex({
