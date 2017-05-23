@@ -16,9 +16,7 @@ const log = debug('app:client');
 export default function({
   config,
   routes, // required
-  loadLocaleMessages = () => new Promise(resolve => {
-    require(['locales/en'], resolve);
-  }),
+  loadLocaleMessages,
   location = Router.HashLocation,
   initialState = (() => {
     const token = CookieSerializer.deserialize();
