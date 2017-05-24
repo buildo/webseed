@@ -1,12 +1,10 @@
 import React from 'react';
 import { intlMethods } from 'Basic';
-import { pure } from 'revenge';
 
 import './hello.scss';
 
-@pure
 @intlMethods
-export default class Hello extends React.Component {
+export default class Hello extends React.PureComponent {
 
   render() {
     return (
