@@ -1,1 +1,1 @@
-export default from './Hello';
+export default from './HelloContainer';
