@@ -1,7 +1,6 @@
 import container from 'container';
 import Hello from './Hello';
 import { TransitionFunction } from 'state';
-import { noLoaderLoading } from 'react-avenger/lib/loading';
 
 type MapProps = {
   transition: TransitionFunction,
@@ -10,7 +9,7 @@ type MapProps = {
   doRefreshUser: () => Promise<void>
 };
 
-export default container(noLoaderLoading(Hello))({
+export default container(Hello)({
   connect: ['formal'],
   queries: ['user'],
   commands: ['doRefreshUser'],

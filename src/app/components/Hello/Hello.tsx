@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { intlMethods } from 'Basic';
+import _loading from 'react-avenger/lib/loading';
+import { LoadingSpinner } from 'Basic';
 
 import './hello.scss';
 
@@ -22,7 +24,7 @@ function formalGreeting() {
 }
 
 @intlMethods
-export default class Hello extends React.PureComponent<Props> {
+class Hello extends React.PureComponent<Props> {
 
   formatMessage: (k: string) => string; // TODO: typo
 
@@ -41,3 +43,10 @@ export default class Hello extends React.PureComponent<Props> {
   }
 
 }
+
+const loading = _loading({
+  wrapper: <div style={{ textAlign: 'center', position: 'relative', minHeight: 100 }} />,
+  loader: <LoadingSpinner />
+});
+
+export default loading(Hello);
