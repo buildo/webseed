@@ -6,7 +6,8 @@ import './hello.scss';
 type Props = {
   formal?: boolean,
   toggle: React.MouseEventHandler<HTMLAnchorElement>,
-  user: string
+  user: string,
+  onRefreshClick: () => Promise<void>
 };
 
 function formalGreeting() {
@@ -26,7 +27,7 @@ export default class Hello extends React.PureComponent<Props> {
   formatMessage: (k: string) => string; // TODO: typo
 
   render() {
-    const { formal, toggle, user } = this.props;
+    const { formal, toggle, user, onRefreshClick } = this.props;
     const greeting = formal ? formalGreeting() : 'Hello';
 
     return (
@@ -34,6 +35,7 @@ export default class Hello extends React.PureComponent<Props> {
         <h1>
           <a onClick={toggle}>{greeting}</a> {user}
         </h1>
+        <a onClick={onRefreshClick}>(refresh)</a>
       </div>
     );
   }
