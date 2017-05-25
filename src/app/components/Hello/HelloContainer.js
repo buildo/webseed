@@ -5,11 +5,13 @@ import Hello from './Hello';
 export default container(Hello, {
   connect: { formal: t.maybe(t.Boolean) },
   queries: ['user'],
-  mapProps: ({ transition, formal = false, user }) => ({
+  commands: ['doRefreshUser'],
+  mapProps: ({ transition, formal = false, user, doRefreshUser }) => ({
     toggle: () => {
       transition({ formal: !formal });
     },
     formal,
-    user
+    user,
+    onRefreshClick: () => doRefreshUser()
   })
 });

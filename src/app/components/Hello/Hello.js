@@ -23,22 +23,24 @@ function formalGreeting() {
 @props({
   formal: t.Boolean,
   toggle: t.Function,
-  user: t.String
+  user: t.String,
+  onRefreshClick: t.Function
 })
 export default class Hello extends React.PureComponent {
 
-  getLocals({ formal, toggle, user }) {
+  getLocals({ formal, toggle, user, onRefreshClick }) {
     const greeting = formal ? formalGreeting() : 'Hello';
 
-    return { greeting, toggle, user };
+    return { greeting, toggle, user, onRefreshClick };
   }
 
-  template({ greeting, toggle, user }) {
+  template({ greeting, toggle, user, onRefreshClick }) {
     return (
       <div className='hello'>
         <h1>
           <a onClick={toggle}>{greeting}</a> {user}
         </h1>
+        <a onClick={onRefreshClick}>(refresh)</a>
       </div>
     );
   }
