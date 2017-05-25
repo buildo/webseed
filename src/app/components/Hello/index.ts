@@ -1,2 +1,2 @@
-import Hello from './Hello';
-export default Hello;
+import HelloContainer from './HelloContainer';
+export default HelloContainer;
