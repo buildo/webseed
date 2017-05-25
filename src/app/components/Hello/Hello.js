@@ -2,7 +2,8 @@ import React from 'react';
 import { intlMethods } from 'Basic';
 import { props, t } from 'tcomb-react';
 import { skinnable } from 'revenge';
-import { noLoaderLoading } from 'react-avenger/lib/loading';
+import loading from 'react-avenger/lib/loading';
+import { LoadingSpinner } from 'Basic';
 
 import './hello.scss';
 
@@ -18,7 +19,10 @@ function formalGreeting() {
 }
 
 @intlMethods
-@noLoaderLoading
+@loading({
+  wrapper: <div style={{ textAlign: 'center', position: 'relative', minHeight: 100 }} />,
+  loader: <LoadingSpinner />
+})
 @skinnable()
 @props({
   formal: t.Boolean,
