@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { intlMethods } from 'Basic';
+
 import './hello.scss';
 
 type Props = {
   formal?: boolean,
-  toggle: React.MouseEventHandler<HTMLAnchorElement>
+  toggle: React.MouseEventHandler<HTMLAnchorElement>,
+  user: string
 };
 
 function formalGreeting() {
@@ -24,13 +26,13 @@ export default class Hello extends React.PureComponent<Props> {
   formatMessage: (k: string) => string; // TODO: typo
 
   render() {
-    const { formal, toggle } = this.props;
+    const { formal, toggle, user } = this.props;
     const greeting = formal ? formalGreeting() : 'Hello';
 
     return (
       <div className='hello'>
         <h1>
-          <a onClick={toggle}>{greeting}</a>
+          <a onClick={toggle}>{greeting}</a> {user}
         </h1>
       </div>
     );
