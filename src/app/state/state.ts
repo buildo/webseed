@@ -4,10 +4,12 @@ import * as t from 'tcomb';
 export interface AppState {
   token?: string,
   view: string
+  formal?: boolean
 };
 export const AppState = t.interface<AppState>({
   token: t.maybe(t.String),
-  view: t.String
+  view: t.String,
+  formal: t.maybe(t.Boolean)
 }, { strict: true });
 
 export const { run, connect, appState } = init<AppState>(AppState);
