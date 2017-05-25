@@ -1,6 +1,8 @@
 @import '~theme/variables.scss';
 
 .hello {
-  color: $coolBlue;
-  text-align: center;
+  div {
+    color: $coolBlue;
+    text-align: center;
+  }
 }

@@ -4,3 +4,4 @@ export {
 } from './intlHelpers';
 
 export LoadingSpinner from './LoadingSpinner';
+export Panel from './Panel';
