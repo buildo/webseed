@@ -2,6 +2,7 @@ import * as React from 'react';
 import { intlMethods } from 'Basic';
 import _loading from 'react-avenger/lib/loading';
 import { LoadingSpinner, Panel } from 'Basic';
+import FlexView from 'react-flexview';
 
 import './hello.scss';
 
@@ -33,14 +34,24 @@ class Hello extends React.PureComponent<Props> {
     const greeting = formal ? formalGreeting() : 'Hello';
 
     return (
-      <Panel className='hello'>
-        <div>
-          <h1>
-            <a onClick={toggle}>{greeting}</a> {user}
-          </h1>
-          <a onClick={onRefreshClick}>(refresh)</a>
-        </div>
-      </Panel>
+      <FlexView className='hello'>
+        <FlexView basis='150' shrink vAlignContent='center' className='side-view'>
+          <h2>I'm the left view!</h2>
+        </FlexView>
+        <FlexView className='hello-view' grow>
+          <Panel>
+            <FlexView column hAlignContent='center'>
+              <h1>
+                <a onClick={toggle}>{greeting}</a> {user}
+              </h1>
+              <a onClick={onRefreshClick}>(refresh)</a>
+            </FlexView>
+          </Panel>
+        </FlexView>
+        <FlexView basis='150' shrink vAlignContent='center' className='side-view'>
+          <h2>I'm the right view!</h2>
+        </FlexView>
+      </FlexView>
     );
   }
 
