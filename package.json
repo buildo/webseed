@@ -34,6 +34,6 @@
     "tcomb-react": "^0.9.3"
   },
   "devDependencies": {
-    "scriptoni": "^0.5.3"
+    "scriptoni": "0.6.0"
   }
 }
