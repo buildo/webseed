@@ -4,6 +4,7 @@ import { props, t } from 'tcomb-react';
 import skinnable from 'react-skinnable';
 import loading from 'react-avenger/lib/loading';
 import { LoadingSpinner, Panel } from 'Basic';
+import FlexView from 'react-flexview';
 
 import './hello.scss';
 
@@ -40,14 +41,24 @@ export default class Hello extends React.PureComponent {
 
   template({ greeting, toggle, user, onRefreshClick }) {
     return (
-      <Panel className='hello'>
-        <div>
-          <h1>
-            <a onClick={toggle}>{greeting}</a> {user}
-          </h1>
-          <a onClick={onRefreshClick}>(refresh)</a>
-        </div>
-      </Panel>
+      <FlexView className='hello'>
+        <FlexView basis='150' shrink vAlignContent='center' className='side-view'>
+          <h2>I'm the left view!</h2>
+        </FlexView>
+        <FlexView className='hello-view' grow>
+          <Panel>
+            <FlexView column hAlignContent='center'>
+              <h1>
+                <a onClick={toggle}>{greeting}</a> {user}
+              </h1>
+              <a onClick={onRefreshClick}>(refresh)</a>
+            </FlexView>
+          </Panel>
+        </FlexView>
+        <FlexView basis='150' shrink vAlignContent='center' className='side-view'>
+          <h2>I'm the right view!</h2>
+        </FlexView>
+      </FlexView>
     );
   }
 
