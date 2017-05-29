@@ -2,6 +2,7 @@
   "presets": [
     ["buildo", {
       "env": "react",
+      "modules": false,
       "targets": {
         "chrome": 52,
         "edge": 13,
