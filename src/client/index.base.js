@@ -5,7 +5,7 @@ import CookieSerializer from 'CookieSerializer';
 import Router from 'react-router';
 import makeLoadLocale from './loadLocale';
 import { query, runCommand } from 'avenger/lib/graph';
-import run from 'buildo-state/lib/run';
+import { run } from 'state';
 import { QueriesContextTypes, CommandsContextTypes } from 'container';
 import { makeOnBrowserChange, makeSyncToBrowser } from 'state-react-router';
 

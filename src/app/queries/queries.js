@@ -7,5 +7,8 @@ export const user = Query({
   id: 'user',
   chacheStrategy: new Expire(2000),
   returnType: t.String,
-  fetch: API.getUser
+  params: {
+    foo: t.maybe(t.String)
+  },
+  fetch: ({ foo }) => console.log('query', foo) || API.getUser() // eslint-disable-line no-console
 });
