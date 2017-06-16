@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { intlMethods } from 'Basic';
 import _loading from 'react-avenger/lib/loading';
-import { LoadingSpinner } from 'Basic';
+import { LoadingSpinner, Panel } from 'Basic';
 
 import './hello.scss';
 
@@ -33,12 +33,14 @@ class Hello extends React.PureComponent<Props> {
     const greeting = formal ? formalGreeting() : 'Hello';
 
     return (
-      <div className='hello'>
-        <h1>
-          <a onClick={toggle}>{greeting}</a> {user}
-        </h1>
-        <a onClick={onRefreshClick}>(refresh)</a>
-      </div>
+      <Panel className='hello'>
+        <div>
+          <h1>
+            <a onClick={toggle}>{greeting}</a> {user}
+          </h1>
+          <a onClick={onRefreshClick}>(refresh)</a>
+        </div>
+      </Panel>
     );
   }
 
