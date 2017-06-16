@@ -3,7 +3,7 @@ import { intlMethods } from 'Basic';
 import { props, t } from 'tcomb-react';
 import skinnable from 'react-skinnable';
 import loading from 'react-avenger/lib/loading';
-import { LoadingSpinner } from 'Basic';
+import { LoadingSpinner, Panel } from 'Basic';
 
 import './hello.scss';
 
@@ -40,12 +40,14 @@ export default class Hello extends React.PureComponent {
 
   template({ greeting, toggle, user, onRefreshClick }) {
     return (
-      <div className='hello'>
-        <h1>
-          <a onClick={toggle}>{greeting}</a> {user}
-        </h1>
-        <a onClick={onRefreshClick}>(refresh)</a>
-      </div>
+      <Panel className='hello'>
+        <div>
+          <h1>
+            <a onClick={toggle}>{greeting}</a> {user}
+          </h1>
+          <a onClick={onRefreshClick}>(refresh)</a>
+        </div>
+      </Panel>
     );
   }
 
