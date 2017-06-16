@@ -5,3 +5,5 @@ export {
 
 import LoadingSpinner from './LoadingSpinner';
 export { LoadingSpinner };
+import Panel from './Panel';
+export { Panel };

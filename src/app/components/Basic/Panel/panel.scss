@@ -1,0 +1,14 @@
+@import '~theme/variables.scss';
+
+$content-background: $cloud;
+
+@import '~buildo-react-components/src/Panel/panel.scss';
+
+.panel {
+  border-radius: 10px;
+  box-shadow: 0 2px 0 $darkGrey;
+
+  .panel-content {
+    border-radius: 10px;
+  }
+}
