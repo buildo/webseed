@@ -1,10 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import { intlMethods } from 'Basic';
 
 import './hello.scss';
 
 @intlMethods
 export default class Hello extends React.PureComponent {
+
+  formatMessage: (k: string) => string; // TODO: typo
 
   render() {
     return (

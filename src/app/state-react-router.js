@@ -1,6 +1,6 @@
-import t from 'tcomb';
-import identity from 'lodash/identity';
-import omitBy from 'lodash/omitBy';
+import * as t from 'tcomb';
+import identity from 'buildo-lodash-ts/lib/identity';
+import omitBy from 'buildo-lodash-ts/lib/omitBy';
 import routes from './routes';
 import _isViewActive from 'buildo-state-react-router/lib/isViewActive';
 import routerDiff from 'buildo-state-react-router/lib/routerDiff';

@@ -1,4 +1,4 @@
 export {
   IntlProvider, FormattedMessage, FormattedNumber, FormattedRelative, intlMethods,
-  childContextTypes, getChildContext, contextTypes
+  childContextTypes, getChildContext
 } from './intlHelpers';
