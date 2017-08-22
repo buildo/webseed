@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IntlProvider } from 'Basic';
-import { RouteHandler } from 'react-router';
+import Hello from 'Hello';
 
 type Props = {
   messages: any,
@@ -9,12 +9,12 @@ type Props = {
   locale: string
 };
 
-export default class AppHandler extends React.Component<Props> {
+export default class App extends React.Component<Props> {
   render() {
     return (
       <IntlProvider {...this.props}>
         <div className='layout'>
-          <RouteHandler />
+          <Hello />
         </div>
       </IntlProvider>
     );
