@@ -4,36 +4,35 @@
   "description": "webseed",
   "main": "src/client/index.js",
   "scripts": {
-    "start": "npm run clean && UV_THREADPOOL_SIZE=20 scriptoni web-dev -c ./config",
-    "build": "npm run clean && UV_THREADPOOL_SIZE=20 scriptoni web-build -c ./config",
-    "clean": "rm -rf build/* && mkdir -p build",
+    "start": "UV_THREADPOOL_SIZE=20 scriptoni web-dev-ts -c ./config",
+    "build": "UV_THREADPOOL_SIZE=20 scriptoni web-build-ts -c ./config",
     "lint": "scriptoni lint",
     "lint-fix": "scriptoni lint --fix",
     "lint-style": "scriptoni lint-style"
   },
   "dependencies": {
-    "avenger": "1.2.0",
-    "buildo-normalize-css": "^1.1.0",
-    "buildo-react-components": "^0.22.0",
-    "buildo-react-container": "^0.7.9",
-    "buildo-state": "0.4.1",
-    "buildo-state-react-router": "0.4.2",
+    "avenger": "^1.3.1",
+    "buildo-normalize-css": "^3.0.2",
+    "buildo-react-components": "^0.27.1",
+    "buildo-react-container": "^0.11.0",
+    "buildo-state": "^0.8.2",
     "cookies-js": "^1.2.3",
     "debug": "^2.6.0",
     "es6-promise": "^4.0.5",
     "lodash": "^4.17.4",
-    "react": "15.4.2",
+    "react": "^15.6.1",
     "react-addons-perf": "15.4.2",
-    "react-avenger": "2.1.0",
-    "react-dom": "15.4.2",
-    "react-flexview": "^1.0.1",
+    "react-avenger": "^4.0.0",
+    "react-dom": "^15.6.1",
+    "react-flexview": "^1.0.13",
     "react-intl": "^2.2.3",
-    "react-router": "^0.13",
-    "react-skinnable": "^1.1.0",
+    "react-skinnable": "^1.1.1",
     "tcomb": "^3.2.16",
     "tcomb-react": "^0.9.3"
   },
   "devDependencies": {
-    "scriptoni": "0.6.0"
+    "@types/node": "^8.0.24",
+    "@types/react": "15.6.1",
+    "scriptoni": "0.7.2"
   }
 }
