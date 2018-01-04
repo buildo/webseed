@@ -1,27 +1,28 @@
 import * as React from 'react';
 import Hello from './Hello';
 import { declareQueries, declareCommands } from 'container';
+import { View } from 'model-ts';
 
 const queries = declareQueries(['user', 'formal'])
-const commands = declareCommands(['doRefreshUser', 'doUpdateFormal'])
+const commands = declareCommands(['doRefreshUser', 'doUpdateView'])
 
 type Props = {
   formal?: boolean,
-  doUpdateFormal: (o: { formal: boolean }) => Promise<void>
-  user: string,
+  doUpdateView: (view: View) => Promise<void>
+  user?: string,
   doRefreshUser: () => Promise<void>,
   readyState: any // TODO
 };
 
 class HelloContainer extends React.Component<Props> {
   render() {
-    const { formal = false, doUpdateFormal, user, doRefreshUser, readyState: { user: { loading } } } = this.props;
+    const { formal = false, doUpdateView, user, doRefreshUser, readyState: { user: { loading } } } = this.props;
     const props = {
       toggle: () => {
-        doUpdateFormal({ formal: !formal });
+        doUpdateView({ view: 'hello', formal: !formal });
       },
       formal,
-      user,
+      user: user || '',
       onRefreshClick: doRefreshUser,
       loading
     }

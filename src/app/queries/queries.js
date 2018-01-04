@@ -1,5 +1,5 @@
 import { Query } from 'avenger/lib/graph';
-import { Expire } from 'avenger/lib/cache/strategies';
+import { Expire, available } from 'avenger/lib/cache/strategies';
 import t from 'tcomb';
 import * as API from 'API';
 
@@ -11,16 +11,48 @@ export const user = Query({
 });
 
 import qs from 'qs';
+import { deserializeView } from 'model-ts';
+import { setTimeout } from 'timers';
 
-export const search = Query({
-  id: 'search',
-  returnType: t.dict(t.String, t.String),
-  fetch: () => Promise.resolve(qs.parse(window.location.search, { ignoreQueryPrefix: true }))
+export const view = Query({
+  id: 'view',
+  returnType: t.Any, // TODO: View
+  fetch: () => {
+    const { pathname, search } = window.location;
+    return Promise.resolve(
+      deserializeView(pathname, qs.parse(search, { ignoreQueryPrefix: true }))
+    );
+  }
 });
 
 export const formal = Query({
   id: 'formal',
-  dependencies: { search: { query: search } },
+  dependencies: { view: { query: view } },
   returnType: t.Boolean,
-  fetch: ({ search }) => Promise.resolve(search.formal === 'true')
+  fetch: ({ view }) => Promise.resolve(view.view === 'hello' && view.formal)
+});
+
+export const token = Query({
+  id: 'token',
+  returnType: t.String,
+  fetch: () => Promise.resolve(localStorage.getItem('token'))
+});
+
+export const isLoggedIn = Query({
+  id: 'isLoggedIn',
+  dependencies: { token: { query: token } },
+  returnType: t.Boolean,
+  fetch: ({ token }) => Promise.resolve(!!token)
+});
+
+export const authenticatedNumber = Query({
+  id: 'authenticatedNumber',
+  chacheStrategy: available,
+  dependencies: { isLoggedIn: { query: isLoggedIn } },
+  returnType: t.maybe(t.Number),
+  fetch: ({ isLoggedIn }) => new Promise(resolve => {
+    setTimeout(() => {
+      resolve(isLoggedIn ? Math.random() : undefined);
+    }, 500);
+  })
 });

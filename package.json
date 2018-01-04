@@ -34,6 +34,6 @@
   "devDependencies": {
     "@types/node": "^8.0.24",
     "@types/react": "15.6.1",
-    "scriptoni": "0.7.2"
+    "scriptoni": "0.7.5"
   }
 }

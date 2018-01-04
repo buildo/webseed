@@ -8,14 +8,34 @@ export const doRefreshUser = Command({
 });
 
 import qs from 'qs';
+import { serializeView } from 'model-ts';
 
-export const doUpdateFormal = Command({
-  id: 'doUpdateFormal',
-  invalidates: { formal: queries.formal },
-  run: ({ formal }) => new Promise(resolve => {
-    const formalQS = formal ? `?${qs.stringify({ formal })}` : '';
-    const path = `${window.location.pathname}${formalQS}`;
+export const doUpdateView = Command({
+  id: 'doUpdateView',
+  invalidates: { view: queries.view },
+  run: (view) => new Promise(resolve => {
     setTimeout(resolve);
-    window.history.pushState(null, '', path);
+    const { pathname, search } = serializeView(view);
+    const searchQuery = search && Object.keys(search).length > 0 ? `?${qs.stringify(search)}` : '';
+    const url = `${pathname}${searchQuery}`;
+    window.history.pushState(null, '', url);
   })
+});
+
+export const doLogin = Command({
+  id: 'doLogin',
+  invalidates: { token: { query: queries.token } },
+  run: () => {
+    localStorage.setItem('token', 'secrettoken');
+    return Promise.resolve();
+  }
+});
+
+export const doLogout = Command({
+  id: 'doLogout',
+  invalidates: { token: { query: queries.token } },
+  run: () => {
+    localStorage.removeItem('token');
+    return Promise.resolve();
+  }
 });

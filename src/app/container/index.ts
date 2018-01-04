@@ -6,3 +6,7 @@ export { QueriesContextTypes } from './declareQueries';
 import declareCommands from './declareCommands';
 export { declareCommands };
 export { CommandsContextTypes } from './declareCommands';
+
+import makeSwitchView from '../components/SwitchView';
+import { View } from 'model-ts';
+export const SwitchView = makeSwitchView<View>('view');
