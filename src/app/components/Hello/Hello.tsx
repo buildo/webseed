@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { intlMethods } from 'Basic';
-import _loading from 'react-avenger/lib/loading';
 import { LoadingSpinner, Panel } from 'Basic';
 import FlexView from 'react-flexview';
 
@@ -10,6 +9,7 @@ type Props = {
   formal?: boolean,
   toggle: React.MouseEventHandler<HTMLAnchorElement>,
   user: string,
+  loading: boolean,
   onRefreshClick: () => Promise<void>
 };
 
@@ -25,41 +25,37 @@ function formalGreeting() {
 }
 
 @intlMethods
-class Hello extends React.PureComponent<Props> {
+export default class Hello extends React.PureComponent<Props> {
 
   formatMessage: (k: string) => string; // TODO: typo
 
   render() {
-    const { formal, toggle, user, onRefreshClick } = this.props;
+    const { formal, toggle, user, onRefreshClick, loading } = this.props;
     const greeting = formal ? formalGreeting() : 'Hello';
 
     return (
-      <FlexView className='hello'>
-        <FlexView basis='150' shrink vAlignContent='center' className='side-view'>
-          <h2>I'm the left view!</h2>
+      <div style={{ textAlign: 'center', position: 'relative', minHeight: 100 }}>
+        <FlexView className='hello'>
+          <FlexView basis='150' shrink vAlignContent='center' className='side-view'>
+            <h2>I'm the left view!</h2>
+          </FlexView>
+          <FlexView className='hello-view' grow>
+            <Panel>
+              <FlexView column hAlignContent='center'>
+                <h1>
+                  <a onClick={toggle}>{greeting}</a> {user}
+                </h1>
+                <a onClick={onRefreshClick}>(refresh)</a>
+              </FlexView>
+            </Panel>
+          </FlexView>
+          <FlexView basis='150' shrink vAlignContent='center' className='side-view'>
+            <h2>I'm the right view!</h2>
+          </FlexView>
         </FlexView>
-        <FlexView className='hello-view' grow>
-          <Panel>
-            <FlexView column hAlignContent='center'>
-              <h1>
-                <a onClick={toggle}>{greeting}</a> {user}
-              </h1>
-              <a onClick={onRefreshClick}>(refresh)</a>
-            </FlexView>
-          </Panel>
-        </FlexView>
-        <FlexView basis='150' shrink vAlignContent='center' className='side-view'>
-          <h2>I'm the right view!</h2>
-        </FlexView>
-      </FlexView>
+        {loading && <LoadingSpinner />}
+      </div>
     );
   }
 
 }
-
-const loading = _loading({
-  wrapper: <div style={{ textAlign: 'center', position: 'relative', minHeight: 100 }} />,
-  loader: <LoadingSpinner />
-});
-
-export default loading(Hello);

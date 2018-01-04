@@ -1,8 +1,6 @@
 import config from 'config';
 import prelude from './prelude';
 import { addLocaleData } from 'react-intl';
-import { transitionReducer } from 'transitions';
-import { isLocalKey } from 'buildo-react-container';
 
 prelude(config);
 
@@ -36,14 +34,9 @@ function loadLocaleMessages(locale) {
   });
 }
 
-const serializeExclude = ['locale', 'token'];
-
-const shouldSerializeKey = k => !isLocalKey(k) && serializeExclude.indexOf(k) === -1;
 export const main = baseIndex({
   config,
   loadLocaleMessages,
   queries,
-  commands,
-  transitionReducer,
-  shouldSerializeKey
+  commands
 });

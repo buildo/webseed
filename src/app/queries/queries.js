@@ -9,3 +9,18 @@ export const user = Query({
   returnType: t.String,
   fetch: API.getUser
 });
+
+import qs from 'qs';
+
+export const search = Query({
+  id: 'search',
+  returnType: t.dict(t.String, t.String),
+  fetch: () => Promise.resolve(qs.parse(window.location.search, { ignoreQueryPrefix: true }))
+});
+
+export const formal = Query({
+  id: 'formal',
+  dependencies: { search: { query: search } },
+  returnType: t.Boolean,
+  fetch: ({ search }) => Promise.resolve(search.formal === 'true')
+});
