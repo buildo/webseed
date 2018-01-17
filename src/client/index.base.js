@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import debug from 'debug';
 import makeLoadLocale from './loadLocale';
-import { query, runCommand } from 'avenger/lib/graph';
+import { query, runCommand, invalidate } from 'avenger/lib/graph';
 import { QueriesContextTypes, CommandsContextTypes } from 'container';
 import App from 'components/App';
 import mkContextWrapper from 'buildo-state/lib/ContextWrapper';
@@ -35,6 +35,8 @@ export default function({
       }, {
         ...QueriesContextTypes, ...CommandsContextTypes
       });
+
+      window.onpopstate = invalidate.bind(null, graph, ['location'], {});
 
       ReactDOM.render((
         <Provider>

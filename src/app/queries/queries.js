@@ -14,11 +14,17 @@ import qs from 'qs';
 import { deserializeView } from 'model-ts';
 import { setTimeout } from 'timers';
 
+export const location = Query({
+  id: 'location',
+  returnType: t.Object, // TODO: Location
+  fetch: () => Promise.resolve(window.location)
+});
+
 export const view = Query({
   id: 'view',
+  dependencies: { location: { query: location } },
   returnType: t.Any, // TODO: View
-  fetch: () => {
-    const { pathname, search } = window.location;
+  fetch: ({ location: { pathname, search } }) => {
     return Promise.resolve(
       deserializeView(pathname, qs.parse(search, { ignoreQueryPrefix: true }))
     );

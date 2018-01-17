@@ -8,6 +8,7 @@ export const doRefreshUser = Command({
 });
 
 import qs from 'qs';
+import trim from 'lodash/trim';
 import { serializeView } from 'model-ts';
 
 export const doUpdateView = Command({
@@ -17,8 +18,13 @@ export const doUpdateView = Command({
     setTimeout(resolve);
     const { pathname, search } = serializeView(view);
     const searchQuery = search && Object.keys(search).length > 0 ? `?${qs.stringify(search)}` : '';
-    const url = `${pathname}${searchQuery}`;
-    window.history.pushState(null, '', url);
+    if (
+      trim(pathname, ' /') !== trim(window.location.pathname, ' /') ||
+      trim(search, ' /') !== trim(window.location.search, ' /')
+    ) {
+      const url = `${pathname}${searchQuery}`;
+      window.history.pushState(null, '', url);
+    }
   })
 });
 
