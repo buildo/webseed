@@ -1,5 +1,4 @@
 export { cacheQueryValues } from 'buildo-react-container';
-export { ConnectContextTypes } from 'buildo-state/lib/connect';
 import declareQueries from './declareQueries';
 export { declareQueries };
 export { QueriesContextTypes } from './declareQueries';

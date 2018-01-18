@@ -1,5 +1,6 @@
 import { Command } from 'avenger-lib-graph';
 import queries from 'queries';
+import * as cookies from 'cookies-js';
 
 export const doRefreshUser = Command({
   id: 'doRefreshUser',
@@ -35,7 +36,7 @@ export const doLogin = Command({
   invalidates: { token: queries.token },
   params: {},
   run: () => {
-    localStorage.setItem('token', 'secrettoken');
+    cookies.set('token', 'secrettoken');
     return Promise.resolve();
   }
 });
@@ -45,7 +46,7 @@ export const doLogout = Command({
   invalidates: { token: queries.token },
   params: {},
   run: () => {
-    localStorage.removeItem('token');
+    cookies.set('token', '');
     return Promise.resolve();
   }
 });
