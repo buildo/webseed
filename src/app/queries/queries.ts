@@ -1,6 +1,7 @@
 import { Query } from 'avenger-lib-graph';
 import { Expire, available } from 'avenger/lib/cache/strategies';
 import * as API from 'API';
+import * as cookies from 'cookies-js';
 
 export const user = Query({
   id: 'user',
@@ -40,7 +41,7 @@ export const formal = Query({
 export const token = Query({
   id: 'token',
   params: {},
-  fetch: () => Promise.resolve(localStorage.getItem('token'))
+  fetch: () => Promise.resolve(cookies.get('token') || null)
 });
 
 export const isLoggedIn = Query({
