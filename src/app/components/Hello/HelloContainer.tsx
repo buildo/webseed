@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Hello from './Hello';
 import { declareQueries, declareCommands } from 'container';
-import { View } from 'model-ts';
+import { View } from 'model';
 
 const queries = declareQueries(['user', 'formal'])
 const commands = declareCommands(['doRefreshUser', 'doUpdateView'])

@@ -8,5 +8,5 @@ export { declareCommands };
 export { CommandsContextTypes } from './declareCommands';
 
 import makeSwitchView from '../components/SwitchView';
-import { View } from 'model-ts';
+import { View } from 'model';
 export const SwitchView = makeSwitchView<View>('view');

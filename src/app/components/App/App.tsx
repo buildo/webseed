@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IntlProvider } from 'Basic';
 import Hello from 'Hello';
 import { declareCommands, SwitchView } from 'container';
-import { View, AnotherView } from 'model-ts';
+import { View, AnotherView } from 'model';
 import LoginButton from 'LoginButton';
 import Another from 'Another';
 
